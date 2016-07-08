@@ -1,0 +1,20 @@
+QDialog {
+    background-color: #B7CBD8;
+    border: 4px solid #485266
+}
+
+QPushButton {
+    color: #B7CBD8;
+    background-color: #485266;
+    border: 2px solid #FFFFFF;
+}
+
+QPushButton:pressed {
+    border-color: #EA8FA7;
+}
+
+QLineEdit {
+    color: #000000;
+    background-color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+}

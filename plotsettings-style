@@ -1,0 +1,28 @@
+
+QSpinBox {
+    padding-right: 3px; /* make room for the arrows */
+    padding-left: 3px;
+        color: #000000;
+        background-color: #B7CBD8;
+}
+
+QSpinBox::up-button {
+        subcontrol-origin: padding;
+    subcontrol-position: center right; /* position at the top right corner */
+    width: 40px;
+        height: 40px;
+}
+QSpinBox::down-button {
+        subcontrol-origin: padding;
+    subcontrol-position: center left; /* position at bottom right corner */
+    width: 40px;
+        height: 40px;
+}
+
+QSpinBox:disabled{
+        color: #808080
+}
+
+QSpinBox:enabled {
+        color: #000000
+}

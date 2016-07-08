@@ -1,0 +1,114 @@
+/* Style for tabwidget */
+
+QWidget#centralWidget {
+    background-color: #485266;
+}
+
+QTabWidget {
+    background-color: #485266;
+}
+
+QTabBar::tab:selected {
+    color: #B7CBD8;
+    background-color: #485266;
+}
+
+QTabBar::tab:!selected {
+    color: #485266;
+    background-color: #B7CBD8;
+}
+
+/* Style for statusbar */
+
+QStatusBar {
+    color: #B7CBD8;
+    background-color: #485266;
+}
+
+/* Styles for lables on main page */
+
+QLabel#lblTemperature {
+    color: #EA8FA7;
+    border: 2px solid #485266;
+    border-bottom-color: #EA8FA7;
+}
+
+QPushButton#pbTemperatureUstavka {
+    color: #485266;
+    background-color: #EA8FA7;
+}
+
+QLabel#lblTemperatureReal {
+    color: #EA8FA7;
+}
+
+QLabel#lblHumi {
+    color: #67FAFA;
+    border: 2px solid #485266;
+    border-bottom-color: #67FAFA;
+}
+
+QPushButton#pbHumiUstavka {
+    color: #485266;
+    background-color: #67FAFA;
+}
+
+QLabel#lblHumiReal {
+    color: #67FAFA;
+}
+
+QLabel#lblTimer {
+    color: #FFFFFF;
+    border: 2px solid #485266;
+    border-bottom-color: #FFFFFF;
+}
+
+QLabel#lblTimerUstavka {
+    color: #485266;
+    background-color: #FFFFFF;
+}
+
+QLabel#lblTimeCurrent {
+    color: #FFFFFF;
+}
+
+QLabel#lblDateCurrent {
+    color: #FFFFFF;
+}
+
+QLabel#lblTimeWork {
+    color: #FFFFFF;
+}
+
+QLabel#lblTimeWorkReal {
+    color: #FFFFFF;
+}
+
+QLabel#lblTimeStop {
+    color: #FFFFFF;
+}
+
+QLabel#lblTimeStopReal {
+    color: #FFFFFF;
+}
+
+QLabel#lblProg {
+    color: #FFFFFF;
+}
+
+QLabel#lblProgTimeReal {
+    color: #FFFFFF;
+}
+
+QLabel#lblSystem {
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    border-bottom-color: #485266;
+}
+
+QLabel#lblSystemMessage {
+    color: #485266;
+    border: 2px solid #FFFFFF;
+    border-top-color: #485266;
+    background-color: #B7CBD8;
+}

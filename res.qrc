@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/styles">
+        <file>style</file>
+        <file>keyboard-style</file>
+        <file>plotsettings-style</file>
+    </qresource>
+</RCC>
