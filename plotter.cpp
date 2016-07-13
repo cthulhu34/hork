@@ -1,6 +1,8 @@
 #include "plotter.h"
 #include "ui_plotter.h"
 
+#include <QTextStream>
+
 plotter::plotter(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::plotter)
@@ -19,6 +21,15 @@ plotter::plotter(QWidget *parent) :
     timeWindow = 600;
     autoY = true;
 
+    initPlot();
+
+   // view->viewport()->setAttribute(Qt::WA_AcceptTouchEvents, true);
+   // view->chart()->setAcceptTouchEvents(true);
+    this->setAttribute(Qt::WA_AcceptTouchEvents, true);
+    grabGesture(Qt::PanGesture);
+    grabGesture(Qt::PinchGesture);
+    grabGesture(Qt::SwipeGesture);
+
 }
 
 plotter::~plotter()
@@ -26,7 +37,7 @@ plotter::~plotter()
     delete ui;
 }
 
-void plotter::initNewPlot()
+void plotter::initPlot()
 {
 
 
@@ -48,9 +59,11 @@ void plotter::initNewPlot()
         yAxis->setRange(yMin, yMax);
     else
     {
-        yAxis->setRange(0, 1);
-        yMaxValue=1;
-        yMinValue=0;
+        yAxis->setRange(0, 30);
+        yMaxValue=30;
+        yMinValue=1;
+        yMin = 1;
+        yMax = 30;
     }
 
     channelT.setWidthF(3);
@@ -107,6 +120,7 @@ void plotter::addDataT(double t)
    }
 
    diagramT->append(currentXValue, t);
+   diagramT->setName(tr("Температура: ") + QString::number(t, 'f', 2));
 
    if(currentXValue > xMax)
    {
@@ -144,6 +158,7 @@ void plotter::addDataH(double h)
    }
 
    diagramH->append(currentXValue, h);
+   diagramH->setName(tr("Влажность: ") + QString::number(h, 'f', 2));
 
    if(currentXValue > xMax)
    {
@@ -285,4 +300,81 @@ bool plotter::getTVisible()
 bool plotter::getHVisible()
 {
     return showH;
+}
+
+void plotter::startNewPlot()
+{
+    xZeroValue = QDateTime::currentDateTime();
+    diagramT->clear();
+    diagramH->clear();
+
+    xMin = 0;
+    xMax = xMin + timeWindow;
+
+    xAxis->setRange(xMin, xMax);
+    xTimeAxis->setRange(xZeroValue.addSecs(xMin), xZeroValue.addSecs(xMax));
+    if(!autoY)
+        yAxis->setRange(yMin, yMax);
+    else
+    {
+        yAxis->setRange(0, 30);
+        yMaxValue=30;
+        yMinValue=1;
+    }
+}
+
+bool plotter::event(QEvent *event)
+{
+    QTextStream err(stderr);
+    //err << tr("Connect failed: ") + event->type().;
+
+    if (event->type() == QEvent::Gesture)
+    {
+        err << tr("\nQEvent type = Gesture");
+        return gestureEvent(static_cast<QGestureEvent*>(event));
+    }
+    return QWidget::event(event);
+}
+
+bool plotter::gestureEvent(QGestureEvent *event)
+{
+    QTextStream err(stderr);
+    if(QGesture *swipe = event->gesture(Qt::SwipeGesture))
+    {
+        err << tr("\nGesture type = swipe");
+        swipeTriggered(static_cast<QSwipeGesture *>(swipe));
+    }
+    if(QGesture *pan = event->gesture(Qt::PanGesture))
+    {
+         err << tr("\nGesture type = pan");
+        panTriggered(static_cast<QPanGesture *>(pan));
+    }
+    if(QGesture *pinch = event->gesture(Qt::PinchGesture))
+    {
+         err << tr("\nGesture type = pinch");
+        pinchTriggered(static_cast<QPinchGesture *>(pinch));
+    }
+    return true;
+}
+
+void plotter::swipeTriggered(QSwipeGesture *gesture)
+{
+    if(gesture->state() == Qt::GestureFinished)
+    {
+        if(gesture->horizontalDirection() == QSwipeGesture::Left)
+            this->screenForward();
+        if(gesture->horizontalDirection() == QSwipeGesture::Right)
+            this->screenBack();
+        update();
+    }
+}
+
+void plotter::panTriggered(QPanGesture *gesture)
+{
+
+}
+
+void plotter::pinchTriggered(QPinchGesture *gesture)
+{
+
 }

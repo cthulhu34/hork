@@ -24,7 +24,7 @@ void PlotOptions::on_pbOk_clicked()
     showH = ui->cbHumi->checkState();
     autoY = ui->cbAutoY->checkState();
 
-    if(minY>=maxY && !autoY)
+    if(minY>=maxY)
     {
         ui->lblMessage->setText("Недопустимый диапазон значений");
         return;
@@ -51,28 +51,28 @@ void PlotOptions::on_cbAutoY_stateChanged(int arg1)
 {
     if(arg1 == Qt::CheckState::Checked)
     {
-        ui->pbMaxYValue->setEnabled(false);
-        ui->pbMaxYMinus->setEnabled(false);
-        ui->pbMaxYPlus->setEnabled(false);
+//        ui->pbMaxYValue->setEnabled(false);
+//        ui->pbMaxYMinus->setEnabled(false);
+//        ui->pbMaxYPlus->setEnabled(false);
 
-        ui->pbMinYValue->setEnabled(false);
-        ui->pbMinYMinus->setEnabled(false);
-        ui->pbMinYPlus->setEnabled(false);
+//        ui->pbMinYValue->setEnabled(false);
+//        ui->pbMinYMinus->setEnabled(false);
+//        ui->pbMinYPlus->setEnabled(false);
 
         autoY = true;
     }
 
     if(arg1 == Qt::CheckState::Unchecked)
     {
-        ui->pbMaxYValue->setEnabled(true);
-        ui->pbMaxYMinus->setEnabled(true);
-        ui->pbMaxYPlus->setEnabled(true);
+//        ui->pbMaxYValue->setEnabled(true);
+//        ui->pbMaxYMinus->setEnabled(true);
+//        ui->pbMaxYPlus->setEnabled(true);
 
-        ui->pbMinYValue->setEnabled(true);
-        ui->pbMinYMinus->setEnabled(true);
-        ui->pbMinYPlus->setEnabled(true);
+//        ui->pbMinYValue->setEnabled(true);
+//        ui->pbMinYMinus->setEnabled(true);
+//        ui->pbMinYPlus->setEnabled(true);
 
-        autoY = true;
+        autoY = false;
     }
 }
 

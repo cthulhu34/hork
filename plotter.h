@@ -34,6 +34,9 @@ public:
     bool getTVisible();
     bool getHVisible();
 
+protected:
+    bool event(QEvent *event);
+
 private:
     Ui::plotter *ui;
 
@@ -63,8 +66,13 @@ private:
     //void pausePlot();
     //void continuePlot();
 
+    bool gestureEvent(QGestureEvent *event);
+    void panTriggered(QPanGesture* );
+    void pinchTriggered(QPinchGesture*);
+    void swipeTriggered(QSwipeGesture*);
+
 public slots:
-    void initNewPlot();
+    void initPlot();
 
     void addDataT(double t);
     void addDataH(double h);
@@ -77,6 +85,8 @@ public slots:
     void toEnd();
     void screenBack();
     void screenForward();
+
+    void startNewPlot();
 
 signals:
     void xRangeChanged();

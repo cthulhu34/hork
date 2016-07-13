@@ -92,7 +92,7 @@ void MainWindow::on_pbPlotSettings_clicked()
     if(options->exec() == QDialog::Accepted)
     {
         ui->chartView->setAutoYScale(options->autoY);
-        if(!options->autoY)
+        //if(!options->autoY)
             ui->chartView->setValuesRange(options->minY, options->maxY);
         ui->chartView->setTimeRange(options->timeRange);
         ui->chartView->setGraphicsVisible(options->showT, options->showH);
@@ -102,7 +102,8 @@ void MainWindow::on_pbPlotSettings_clicked()
 void MainWindow::on_pbStart_clicked()
 {
 
-    ui->chartView->initNewPlot();
+    //ui->chartView->initPlot();
+    ui->chartView->startNewPlot();
     plotStarted = true;
 
     //ui->chartView->setValuesRange(0, 40);
